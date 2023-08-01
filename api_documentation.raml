@@ -1,0 +1,95 @@
+#%RAML 1.0
+title: Documentación de API de Usuarios
+baseUri: https://64c91dd9b2980cec85c1ef1a.mockapi.io
+
+/users:
+  displayName: Usuarios
+  get:
+    description: Obtiene el listado completo de usuarios.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "nombre": "Edgar King",
+                  "mail": "edgar@example.com",
+                  "password": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1013.jpg",
+                  "id": "1"
+                },
+                {
+                  "nombre": "Louis Gusikowski",
+                  "mail": "louis@example.com",
+                  "password": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/677.jpg",
+                  "id": "2"
+                },
+                ...
+              ]
+  post:
+    description: Crea un nuevo usuario.
+    body:
+      application/json:
+        example: |
+          {
+            "nombre": "Nombre del Usuario",
+            "mail": "usuario@example.com",
+            "password": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/123.jpg"
+          }
+    responses:
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "nombre": "Nombre del Usuario",
+                "mail": "usuario@example.com",
+                "password": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/123.jpg",
+                "id": "17"
+              }
+
+/users/{id}:
+  uriParameters:
+    id:
+      description: ID del usuario.
+      type: integer
+      example: 1
+  get:
+    description: Obtiene los detalles de un usuario específico.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "nombre": "Edgar King",
+                "mail": "edgar@example.com",
+                "password": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1013.jpg",
+                "id": "1"
+              }
+  put:
+    description: Actualiza los datos de un usuario específico.
+    body:
+      application/json:
+        example: |
+          {
+            "nombre": "Nuevo Nombre del Usuario",
+            "mail": "nuevo_usuario@example.com"
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "nombre": "Nuevo Nombre del Usuario",
+                "mail": "nuevo_usuario@example.com",
+                "password": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1013.jpg",
+                "id": "1"
+              }
+  delete:
+    description: Elimina un usuario específico.
+    responses:
+      204:
+        description: Usuario eliminado correctamente.
+
